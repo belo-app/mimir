@@ -1,0 +1,34 @@
+name: Build Production
+
+on:
+  push:
+    paths:
+      - "*"
+      - .github/workflows/build-prod.yml
+      - "blog/**"
+      - "docs/**"
+      - "src/**"
+      - "static/**"
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+
+      - name: Publish docs
+        env:
+          NETLIFY_SITE_ID: 1d1658bd-f5a7-439e-b535-d8ec2eaa0955
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: yarn netlify deploy -p --dir=build
