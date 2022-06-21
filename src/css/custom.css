@@ -1,0 +1,63 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono&display=swap");
+@import url("https://unpkg.com/phosphor-icons/src/css/icons.css");
+
+:root {
+  --ifm-font-family-base: "Inter", sans-serif;
+  --ifm-font-family-monospace: "JetBrains Mono", monospace;
+  --ifm-footer-background-color: #27149e;
+  --ifm-footer-color: #fff;
+
+  --ifm-color-primary-lightest: #b0b3ff;
+  --ifm-color-primary-lighter: #8483ff;
+  --ifm-color-primary-light: #5b51ff;
+  --ifm-color-primary: #3d24fa;
+  --ifm-color-primary-dark: #371be6;
+  --ifm-color-primary-darker: #2e16c1;
+  --ifm-color-primary-darkest: #010b54;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --ifm-footer-background-color: #076043;
+
+  --ifm-color-primary-lightest: #71ffcf;
+  --ifm-color-primary-lighter: #2bfcb3;
+  --ifm-color-primary-light: #01e696;
+  --ifm-color-primary: #00c079;
+  --ifm-color-primary-dark: #009663;
+  --ifm-color-primary-darker: #067550;
+  --ifm-color-primary-darkest: #076043;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  transition: all 300 ease-in-out;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2361da;
+  border-radius: 6px;
+  transition: all 300 ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #3d24fa;
+  border-radius: 6px;
+  transition: all 300 ease-in-out;
+}
+
+body,
+html {
+  font-family: "Inter", sans-serif;
+}
