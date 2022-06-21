@@ -4,6 +4,9 @@
 const lightCodeTheme = require("prism-react-renderer/themes/nightOwlLight");
 const darkCodeTheme = require("prism-react-renderer/themes/nightOwl");
 
+/** @type any} */
+const mermaid = require("mdx-mermaid");
+
 const { NODE_ENV } = process.env;
 const isProduction = NODE_ENV === "production";
 
@@ -102,6 +105,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
+          remarkPlugins: [mermaid],
         },
         blog: {
           showReadingTime: true,
@@ -116,24 +120,15 @@ const config = {
       {
         specs: [
           {
-            // spec: "http://api.belo.app/v1/docs/json",
-            spec: isProduction
-              ? "https://redocly.github.io/redoc/openapi.yaml"
-              : "http://localhost:4000/v1/docs/json",
+            spec: "https://api.belo.app/v1/docs/json",
             route: "/v1/",
           },
           {
-            // spec: "http://api.belo.app/v2/docs/json",
-            spec: isProduction
-              ? "https://redocly.github.io/redoc/openapi.yaml"
-              : "http://localhost:4000/v1/docs/json",
+            spec: "https://api.belo.app/v1/docs/json",
             route: "/_v2/",
           },
           {
-            // spec: "http://api.belo.app/v3/docs/json",
-            spec: isProduction
-              ? "https://redocly.github.io/redoc/openapi.yaml"
-              : "http://localhost:4000/v1/docs/json",
+            spec: "https://api.belo.app/v1/docs/json",
             route: "/_v3/",
           },
         ],

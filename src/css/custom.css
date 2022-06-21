@@ -46,13 +46,13 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #2361da;
+  background-color: var(--ifm-color-primary);
   border-radius: 6px;
   transition: all 300 ease-in-out;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #3d24fa;
+  background-color: var(--ifm-color-primary-darker);
   border-radius: 6px;
   transition: all 300 ease-in-out;
 }

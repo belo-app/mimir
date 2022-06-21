@@ -1,4 +1,3 @@
-import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
 import React, { FC } from "react";
