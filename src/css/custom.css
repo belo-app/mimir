@@ -38,6 +38,7 @@
 
 ::-webkit-scrollbar {
   width: 7px;
+  height: 7px;
   transition: all 300 ease-in-out;
 }
 
@@ -60,4 +61,9 @@
 body,
 html {
   font-family: "Inter", sans-serif;
+}
+
+.react-tabs__tab-panel > div > pre {
+  background-color: transparent !important;
+  padding-bottom: 1rem !important;
 }

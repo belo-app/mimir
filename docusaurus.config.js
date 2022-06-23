@@ -21,7 +21,7 @@ const colors = {
 
 const redocConfig = {
   options: {
-    nativeScrollbars: true,
+    nativeScrollbars: false,
   },
   theme: {
     colors: {
@@ -67,16 +67,12 @@ const redocConfig = {
       },
     },
 
-    sidebar: {
-      width: "300px",
-    },
-
     logo: {
       gutter: "0px",
     },
 
     rightPanel: {
-      width: "40%",
+      // width: "40%",
     },
   },
 };
@@ -120,7 +116,9 @@ const config = {
       {
         specs: [
           {
-            spec: "https://api.belo.app/v1/docs/json",
+            spec: isProduction
+              ? "https://api.belo.app/v1/docs/json"
+              : "http://localhost:3000/v1/docs/json",
             route: "/v1/",
           },
           {
