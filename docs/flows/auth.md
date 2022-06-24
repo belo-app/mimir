@@ -5,7 +5,7 @@ sidebar_position: 2
 # Authorization
 
 :::caution
-Your credentials are only yours, belo will never ask them in any way, we encourage to not share them with anybody
+Your credentials are only yours, belo will never ask them in any way and encourages to not share them with anybody
 :::
 
 :::danger
