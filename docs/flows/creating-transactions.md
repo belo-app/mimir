@@ -4,11 +4,13 @@ sidebar_position: 5
 
 # Creating transactions
 
-Our transaction model use the same pattern for every transaction:
+The transaction model uses the same pattern for every transaction:
 
-First step you create a preview, where we validate what you ask is possible and valid, then you see our promised price quote.
-The preview is valid for 1 minute, after that you will have to update it, or create another one.
-If the price seems ok, you can confirm the preview.
+- First step you create a preview, where transaction is checked and you get a promised price quote if valid.
+- The preview is valid for 1 minute, after that you will have to update it, or create another one.
+- While the preview is valid, you can confirm it in order to complete the transaction.
+
+Either the transaction is successful or not, you will receive a notification in your mobile app as long as you are subscribed to transaction notifications in your [settings](/v1/#tag/settings).
 
 ## Create preview
 
@@ -16,7 +18,7 @@ If the price seems ok, you can confirm the preview.
 
 Use the [preview swap](/v1#tag/transaction/paths/~1v1~1transaction~1transfer/post) endpoint
 
-For example you want to transfer 1 USDT of Ethereum
+For example, suppose you want to transfer 1 USDT of Ethereum to other belo user through belotag:
 
 ```json
 {
@@ -28,7 +30,7 @@ For example you want to transfer 1 USDT of Ethereum
 }
 ```
 
-And the response will look like
+And the response will look like:
 
 ```json
 {
@@ -74,7 +76,7 @@ And the response will look like
 
 Use the [preview swap](/v1#tag/transaction/paths/~1v1~1transaction~1swap/post) endpoint
 
-For example you want to buy 1 USDT of Ethereum
+For example, suppose you want to transfer 1 USDT worth of Ether:
 
 ```json
 {
@@ -85,7 +87,7 @@ For example you want to buy 1 USDT of Ethereum
 }
 ```
 
-And the response will look like
+And the response will look like:
 
 ```json
 {
@@ -129,8 +131,8 @@ And the response will look like
 
 ## Update preview
 
-In case the preview is expired you can update it using the [update preview](/v1#tag/transaction/paths/~1v1~1transaction~1preview~1%7Bid%7D/put) endpoint
+In case the preview is expired you can update it using the [update preview](/v1#tag/transaction/paths/~1v1~1transaction~1preview~1%7Bid%7D/put) endpoint.
 
 ## Confirm preview
 
-In case all is good you can [confirm the preview](/v1#tag/transaction/paths/~1v1~1transaction~1confirm~1%7Bid%7D/put)
+In case you want to proceed with the transaction, you will have to [confirm the preview](/v1#tag/transaction/paths/~1v1~1transaction~1confirm~1%7Bid%7D/put).
