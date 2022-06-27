@@ -4,11 +4,11 @@ sidebar_position: 5
 
 # Creating transactions
 
-Transaction model uses the same pattern for every transaction:
+The transaction model uses the same pattern for every transaction:
 
 - First step you create a preview, where transaction is checked and you get a promised price quote if valid.
 - The preview is valid for 1 minute, after that you will have to update it, or create another one.
-- While the preview is valid, you can confirm it to complete the transaction.
+- While the preview is valid, you can confirm it in order to complete the transaction.
 
 Either the transaction is successful or not, you will receive a notification in your mobile app as long as you are subscribed to transaction notifications in your [settings](/v1/#tag/settings).
 

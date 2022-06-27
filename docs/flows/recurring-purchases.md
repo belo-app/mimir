@@ -4,7 +4,7 @@ sidebar_position: 7
 
 # Recurring purchases
 
-With recurring purchases you can schedule daily,weekly or monthly transactions of your preferred assets.
+With recurring purchases you can schedule daily, weekly or monthly swaps between your preferred assets.
 
 It is only possible to schedule only one recurring purchase per pair/period.
 
