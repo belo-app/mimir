@@ -1,5 +1,11 @@
-berti:
+fberti:
   name: Fernando Berti
   title: CTO @ belo
-  url: https://github.com/endiliey
+  url: https://github.com/bertilxi
   image_url: https://avatars.githubusercontent.com/u/6568592?v=4
+
+tholtz:
+  name: Tomas Holtz
+  title: Frontend engineer @ belo
+  url: https://github.com/TomiHoltz
+  image_url: https://avatars.githubusercontent.com/u/74627244?v=4

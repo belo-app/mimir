@@ -4,35 +4,42 @@
  * work well for content-centric websites.
  */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&Poppins:wght@400;500;600;700&display=swap");
 @import url("https://unpkg.com/phosphor-icons/src/css/icons.css");
 
 :root {
   --ifm-font-family-base: "Inter", sans-serif;
   --ifm-font-family-monospace: "JetBrains Mono", monospace;
-  --ifm-footer-background-color: #27149e;
+  --ifm-font-family-brand: "Poppins", sans-serif;
+  --ifm-footer-background-color: #262626;
   --ifm-footer-color: #fff;
 
-  --ifm-color-primary-lightest: #b0b3ff;
-  --ifm-color-primary-lighter: #8483ff;
-  --ifm-color-primary-light: #5b51ff;
+  --ifm-color-primary-lightest: #ddd9ff;
+  --ifm-color-primary-lighter: #7663ff;
+  --ifm-color-primary-light: #5f4aff;
   --ifm-color-primary: #3d24fa;
-  --ifm-color-primary-dark: #371be6;
-  --ifm-color-primary-darker: #2e16c1;
-  --ifm-color-primary-darkest: #010b54;
+  --ifm-color-primary-dark: #2209e0;
+  --ifm-color-primary-darker: #1400ad;
+  --ifm-color-primary-darkest: #0e007a;
+
+  --ifm-navbar-background-color: #262626;
+  --ifm-navbar-link-color: #fff;
+  --ifm-navbar-link-hover-color: #2bfcb3;
+
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-[data-theme="dark"] {
-  --ifm-footer-background-color: #076043;
+[data-theme="dark"]:root {
+  --ifm-background-color: #161616;
+  --ifm-background-surface-color: #1e1e1e;
 
-  --ifm-color-primary-lightest: #71ffcf;
-  --ifm-color-primary-lighter: #2bfcb3;
-  --ifm-color-primary-light: #01e696;
-  --ifm-color-primary: #00c079;
-  --ifm-color-primary-dark: #009663;
-  --ifm-color-primary-darker: #067550;
-  --ifm-color-primary-darkest: #076043;
+  --ifm-color-primary-lightest: #d9fff2;
+  --ifm-color-primary-lighter: #78ffd0;
+  --ifm-color-primary-light: #45ffbe;
+  --ifm-color-primary: #2bfcb3;
+  --ifm-color-primary-dark: #10e399;
+  --ifm-color-primary-darker: #00c983;
+  --ifm-color-primary-darkest: #007049;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
@@ -60,10 +67,35 @@
 
 body,
 html {
-  font-family: "Inter", sans-serif;
 }
 
 .react-tabs__tab-panel > div > pre {
   background-color: transparent !important;
   padding-bottom: 1rem !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--ifm-font-family-brand);
+}
+
+.container {
+  max-width: 100vw;
+}
+
+.toggleButton_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module {
+  color: var(--ifm-navbar-link-color);
+}
+
+.toggleButton_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module:hover {
+  background: var(--ifm-navbar-background-color) !important;
+  color: var(--ifm-navbar-link-hover-color) !important;
+}
+
+.footer {
+  font-family: var(--ifm-font-family-brand);
 }
