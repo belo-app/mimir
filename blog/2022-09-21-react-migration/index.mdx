@@ -3,83 +3,51 @@ title: Why we migrated to react native
 authors:
   - tholtz
 tags: [migration, react-native, frontend]
-image: ./img/social-card.png
+image: ./img/reactvsflutter.png
 ---
 
-We are happy announce **Docusaurus 2.1**, our very first minor version release.
+A few weeks ago, we celebrated our first year in the market. With our mobile app, developed in [Flutter](https://flutter.dev/), working really well in its version 0.18.6.
 
-The upgrade should be easy: as explained in our [release process documentation](/), minor versions respect [Semantic Versioning](https://semver.org/).
+What our users did not know was that we had been working in our version 1.0.0, which has several redesigns all over the app, developed with React Native from scratch.
 
-![Docusaurus 2.1 social card](./img/social-card.png)
+Why did we decide to migrate and to do the whole app again if everything seems to be working well?
+
+![Docusaurus 2.1 social card](./img/reactvsflutter.png)
 
 <!--truncate-->
 
-## Highlights
+## Reasons
 
-### DocCardList improvements
+### 1- The scarcity of Flutter devs
 
-In [#8008](https://github.com/facebook/docusaurus/pull/8008), we simplified the usage of the`<DocCardList>` component, that is notably used on sidebar category generated index pages.
+A lot of companies and great StartUps are using Flutter to create their own mobile apps, thats a fact. On the other hand, there aren’t so many developers with experience using Dart as there are in Javascript.
 
-The `items` prop is now optional, and will be automatically inferred from the content of the parent sidebar category:
+Obviously, this make Flutter Devs much more expensive.
 
-```diff
-import DocCardList from '@theme/DocCardList';
-- import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+Also, a developer who has 0 experience working with React Native, but has using React, can quickly adapt to this new framework because of the similarity.
 
-- <DocCardList items={useCurrentSidebarCategory().items}/>
-+ <DocCardList/>
-```
+So, you have more developers in React + React Native than in Flutter, and you can use them in any web development you need in the future. Flutter devs are not able to do this (Flutter web is very unstable and has SEO problems).
 
-Also, we made it possible to use it on any document, including regular docs not linked to any sidebar category.
+This last point is really important as we are working in a new API as a Service product, which needs the development of a web app for the dashboard.
 
-![simplified DocCardList component](./img/doc-card-list.png)
+### 2- A programing language is more useful if more devs are using it
 
-### `noindex` improvements
+The scarcity is not only a problem because make devs more expensive. As more devs are using a language, easier is to developed with it, more libraries are created and the core team iterates more quickly with the help of the community.
 
-We improved the support of the [`noindex` meta `robots` directive](https://developers.google.com/search/docs/advanced/crawling/block-indexing), a way to signal search engines you don't want a specific page to be indexed.
+This last point is also important. You could need to use a OS feature that has been launched in the last versions. So, you need the framework’s core team to implement it as fast as possible.
 
-In [#7963](https://github.com/facebook/docusaurus/pull/7963), we allow `noindex` to be configured on a per-docs-version basis.
+### 3- Flutter has some risk because is created and mantained by google
 
-Use the following plugin options to tell crawlers you don't want the `1.0.0` version to be indexed:
+If you enter to [Killed by Google](https://killedbygoogle.com/), you will find all the projects Google has deprecated with the pass of the years. 
 
-```jsx
-const options = {
-  versions: {
-    "1.0.0": {
-      noIndex: true,
-    },
-  },
-};
-```
+You will also find AngularJS right there.
 
-In practice, Docusaurus will add the following meta to each page of that version:
+It’s real that Google is using Flutter in the GooglePay mobile app, and probably they are not going to deprecate flutter for this and other reasons.
 
-```html
-<meta name="robots" content="noindex, nofollow" />
-```
+But you are never sure, because GPay is not Google’s core business.
 
-In [#7964](https://github.com/facebook/docusaurus/pull/7964), we also fixed a bug where the sitemap plugin would still contain pages that have a `noindex` directive. Now the sitemap plugin will reliably filter out all the pages containing `noindex` directives.
+On the other hand, Facebook is using React and React Native for Facebook, Instagram and Whatsapp. So you can be sure that Facebook will be supporting it for a long time.
 
-### Overriding default meta tags
+## Final
 
-In [#7952](https://github.com/facebook/docusaurus/pull/7952), it becomes possible to override default html meta tags you couldn't before:
-
-```jsx
-<>
-  {siteConfig.noIndex && <meta name="robots" content="nofollow, noindex" />}
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</>
-```
-
-It is now possible to use `<Head>` or `themeConfig.metadata`:
-
-- to override the `viewport` meta
-- to override the `robots` meta: you could mark your site as `noIndex`, but except for specific pages that should be indexed
-
-### Ukrainian translations
-
-In [#7953](https://github.com/facebook/docusaurus/pull/7953), we added default classic theme translations for the Ukrainian language.
-
-## Other changes
-
-Check the [2.1.0 changelog entry](/) for an exhaustive list of changes.
+So, these are the reasons why we decided to migrate belo’s mobile app. Remember we are always looking for new great additions to our engineering team at belo. In case you are interested to build the next generation of finance, [tell us about you here.](https://work.belo.app)
