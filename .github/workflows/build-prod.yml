@@ -1,11 +1,7 @@
 name: Build Production
 
-on:  
-  workflow_dispatch:
-    branches:
-     - main
-
 on:
+  workflow_dispatch:
   push:
     paths:
       - "*"
