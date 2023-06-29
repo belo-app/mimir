@@ -12,9 +12,14 @@ Your credentials are only yours, belo will never ask them in any way and encoura
 An insecure storage of credentials will potentially result in loss of funds
 :::
 
-The usual authorization flow in the mobile app is by a deep link sent to your email,
-given this does not work programmatically you will need to use another method.
+To use API V2, you'll need to authenticate with a token. You can get this token by signing in through the [/login](/v2#tag/auth/paths/~1v2~1auth~1login/post) endpoint, using your username and password. Keep in mind that this token does expire, so you'll need to refresh it to keep using it.
 
-You can access your account credentials creating an API key (TBD...)
+For those endpoints that require your authentication, you'll need to provide this token in the request headers as indicated in the [documentation](/v2#tag/auth).
 
-You can create up to 10 API keys
+## Auth Flow
+
+As mentioned above, to get the token you need to log in. To refresh this token, you should use the [/refresh-token](/v2#tag/auth/paths/~1v2~1auth~1refresh-token/post) endpoint by sending your refreshToken also provided when logging in.
+
+If you no longer want to use your token, you can log out of the application through the [/logout](/v2#tag/auth/paths/~1v2~1auth~1logout/get) endpoint.
+
+If you've forgotten your password and are having trouble logging in, you can always reset it using the [/change-password](/v2#tag/auth/paths/~1v2~1auth~1change-password/put) endpoint.

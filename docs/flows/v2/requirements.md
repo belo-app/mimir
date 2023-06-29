@@ -4,4 +4,4 @@ sidebar_position: 1
 
 # Requirements
 
-In order to use the API you need to have a `VERIFIED` account in [belo mobile application](https://api.belo.app/verify). In order to verify your account, you should submit KYC required documents and wait for us to approve them. It usually takes less than five minutes.
+To utilize the API, you need to have a VERIFIED account within the below mobile application. As part of the verification process, you must submit the required Know Your Customer (KYC) documents and await our approval. Typically, this process takes less than five minutes. Additionally, please ensure that your account is designated as 'legal person'

@@ -1,12 +1,12 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # Top up your account
 
 To start using your account in production you will need to deposit some assets. You can deposit fiat or cryptocurrencies.
 
-First you should fetch your [deposit accounts](/v1#tag/contact/paths/~1v1~1contact~1account/get) and [currencies](/v1/#tag/currency/paths/~1v1~1currency~1/get)
+First you should fetch your [deposit accounts](/v2#tag/account/paths/~1v2~1account~1deposit-address/get) and [currencies](/v2#tag/data/paths/~1v2~1data~1currency/get)
 
 You can choose whatever you like to deposit, the response will look like this:
 
@@ -30,4 +30,4 @@ You can choose whatever you like to deposit, the response will look like this:
 }
 ```
 
-After sending some assets you will receive a notification in your mobile device when deposit is successful, you can check it at [transaction history](/v1#tag/transaction/paths/~1v1~1transaction~1/get) endpoint.
+After sending some assets you will receive a notification in your mobile device when deposit is successful, you can check it at [transaction history](/v2#tag/transaction/paths/~1v2~1transaction~1/get) endpoint.

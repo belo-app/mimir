@@ -32,7 +32,7 @@ The version 2 of the API empowers business clients to operate within a cool dash
 
 #### You can
 
-- Read your balances, deposit addresses, limits, currencies, contacts, transactions, prices, yields
+- Read your balances, deposit addresses, limits, currencies, contacts, transactions, prices
 - Receive/transfer/swap assets
 - Conciliate your transactions
 - Manage your recurring purchases
@@ -43,7 +43,7 @@ The version 2 of the API empowers business clients to operate within a cool dash
 
 - Register
 - Create and manage cards
-- Operate with Payoneer and Bitwage
+- Operate with Payoneer
 
 ### V3 (Coming soon...)
 
