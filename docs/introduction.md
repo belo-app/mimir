@@ -26,24 +26,24 @@ The version 1 of the API allows belo's mobile application users to manage their 
 - Create other users
 - Manage other user accounts
 
-### V2 (Coming soon...)
+### V2
 
-The version 2 of the API allows business clients to have a main account where they can integrate their existing user base
+The version 2 of the API empowers business clients to operate within a cool dashboard, as well as through the API itself, with the goal of enhancing their financial management capabilities.
 
 #### You can
 
-- Read your balances, deposit addresses, contacts, transaction history, prices, yields
+- Read your balances, deposit addresses, limits, currencies, contacts, transactions, prices, yields
 - Receive/transfer/swap assets
+- Conciliate your transactions
 - Manage your recurring purchases
-- Update your settings, configuration and notification webhooks
-- Add your own fee for swaps
-- Reconcile your transaction history
+- Update your settings
+- Manage authentication
 
 #### You can not
 
+- Register
 - Create and manage cards
-- Create and manage individual bank accounts
-- Create and manage referrals
+- Operate with Payoneer and Bitwage
 
 ### V3 (Coming soon...)
 
