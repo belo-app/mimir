@@ -8,7 +8,7 @@ With recurring purchases you can schedule daily, weekly or monthly swaps between
 
 It is only possible to schedule only one recurring purchase per pair/period.
 
-- [Create a recurring purchase](/v1/#tag/dca/paths/~1v1~1dca~1/post)
-- [Edit a recurring purchase](/v1/#tag/dca/paths/~1v1~1dca~1%7Bid%7D/put)
-- [Delete a recurring purchase](/v1/#tag/dca/paths/~1v1~1dca~1%7Bid%7D/delete)
-- [List your recurring purchases](/v1/#tag/dca/paths/~1v1~1dca~1/get)
+- [Create a recurring purchase](/v2#tag/dca/paths/~1v2~1dca~1/post)
+- [Edit a recurring purchase](/v2#tag/dca/paths/~1v2~1dca~1%7Bid%7D/put)
+- [Delete a recurring purchase](/v2#tag/dca/paths/~1v2~1dca~1%7Bid%7D/delete)
+- [List your recurring purchases](/v2#tag/dca/paths/~1v2~1dca~1/get)
