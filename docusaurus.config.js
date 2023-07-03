@@ -122,7 +122,7 @@ const config = {
             route: "/v1/",
           },
           {
-            spec: "https://api.belo.app/v1/docs/json",
+            spec: "https://api.stg.belo.app/v1/docs/json",
             route: "/_v2/",
           },
           {
