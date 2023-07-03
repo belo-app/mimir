@@ -1,8 +1,8 @@
 {
-  "label": "V1 Flows",
+  "label": "API Flows",
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "How to use the V1 API."
+    "description": "This documentation serves as resource to understand the functionality of different versions of the API."
   }
 }
