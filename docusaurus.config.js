@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/nightOwl");
 const mermaid = require("mdx-mermaid");
 
 const { NODE_ENV } = process.env;
-const isProduction = NODE_ENV === "production";
+const isProduction = true ?? NODE_ENV === "production";
 
 const colors = {
   gray: { 500: "#64748b" },
@@ -79,7 +79,7 @@ const redocConfig = {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "belo tech",
+  title: "belo engineering",
   tagline: "Make it simple, make it belo",
   url: "https://tech.belo.app",
   baseUrl: "/",
@@ -122,8 +122,8 @@ const config = {
             route: "/v1/",
           },
           {
-            spec: "https://api.stg.belo.app/v1/docs/json",
-            route: "/_v2/",
+            spec: "https://api.belo.app/v2/docs/json",
+            route: "/v2/",
           },
           {
             spec: "https://api.belo.app/v1/docs/json",
@@ -140,21 +140,27 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
+        title: "",
         logo: {
           alt: "belo",
           src: "img/logo.png",
         },
         items: [
           {
+            to: "/blog",
+            label: "Blog",
+            position: "right",
+          },
+          {
             type: "doc",
             docId: "introduction",
-            position: "left",
+            position: "right",
             label: "Docs",
           },
           {
             type: "dropdown",
             label: "API",
-            position: "left",
+            position: "right",
             items: [
               {
                 href: "/v1",
@@ -172,16 +178,10 @@ const config = {
           },
 
           // {
-          //   to: "/blog",
-          //   label: "Blog",
-          //   position: "left",
+          //   to: "/pricing",
+          //   label: "Pricing",
+          //   position: "right",
           // },
-
-          {
-            to: "/pricing",
-            label: "Pricing",
-            position: "left",
-          },
 
           {
             href: "https://comunidad.belo.app",

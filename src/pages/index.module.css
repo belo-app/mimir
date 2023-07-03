@@ -3,6 +3,8 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+
+  font-family: var(--ifm-font-family-brand);
 }
 
 @media screen and (max-width: 996px) {
@@ -18,10 +20,14 @@
 }
 
 .heroTitle {
-  font-weight: normal;
   font-size: 4rem;
 }
 
 .heroSubtitle {
   color: var(--ifm-color-primary);
+  font-size: 2rem;
+}
+
+.infoButton {
+  margin: 1.5rem 2rem;
 }
