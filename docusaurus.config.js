@@ -126,6 +126,10 @@ const config = {
             route: "/v2/",
           },
           {
+            spec: "https://api.belo.app/payment/docs/json",
+            route: "/payment/",
+          },
+          {
             spec: "https://api.belo.app/v1/docs/json",
             route: "/_v3/",
           },
@@ -169,6 +173,10 @@ const config = {
               {
                 href: "/v2",
                 label: "V2",
+              },
+              {
+                href: "/payment",
+                label: "Payment",
               },
               {
                 href: "/v3",
