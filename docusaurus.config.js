@@ -117,20 +117,20 @@ const config = {
         specs: [
           {
             spec: isProduction
-              ? "https://api.belo.app/v1/docs/json"
+              ? "https://api.stg.belo.app/v1/docs/json"
               : "http://localhost:3000/v1/docs/json",
             route: "/v1/",
           },
           {
-            spec: "https://api.belo.app/v2/docs/json",
+            spec: "https://api.stg.belo.app/v2/docs/json",
             route: "/v2/",
           },
           {
-            spec: "https://api.belo.app/payment/docs/json",
+            spec: "https://api.stg.belo.app/payment/docs/json",
             route: "/payment/",
           },
           {
-            spec: "https://api.belo.app/v1/docs/json",
+            spec: "https://api.stg.belo.app/v1/docs/json",
             route: "/_v3/",
           },
         ],
