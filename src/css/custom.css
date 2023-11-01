@@ -65,10 +65,6 @@
   transition: all 300 ease-in-out;
 }
 
-body,
-html {
-}
-
 .react-tabs__tab-panel > div > pre {
   background-color: transparent !important;
   padding-bottom: 1rem !important;
