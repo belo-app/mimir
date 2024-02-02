@@ -133,6 +133,10 @@ const config = {
             spec: "https://api.stg.belo.app/v1/docs/json",
             route: "/_v3/",
           },
+          {
+            spec: "https://frigg.stg.belo.app/v1/docs/json",
+            route: "/crypto/",
+          },
         ],
 
         theme: redocConfig,
@@ -181,6 +185,10 @@ const config = {
               {
                 href: "/v3",
                 label: "V3",
+              },
+              {
+                href: "/crypto",
+                label: "Crypto",
               },
             ],
           },
