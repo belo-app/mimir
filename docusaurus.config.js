@@ -137,6 +137,14 @@ const config = {
             spec: "https://frigg.stg.belo.app/v1/docs/json",
             route: "/crypto/",
           },
+          {
+            spec: "https://balder.stg.belo.app/api/docs/json",
+            route: "/backoffice/api",
+          },
+          {
+            spec: "https://balder.stg.belo.app/dashboard/docs/json",
+            route: "/backoffice/dashboard",
+          },
         ],
 
         theme: redocConfig,
@@ -189,6 +197,14 @@ const config = {
               {
                 href: "/crypto",
                 label: "Crypto",
+              },
+              {
+                href: "/backoffice/dashboard",
+                label: "Backoffice Dashboard",
+              },
+              {
+                href: "/backoffice/api",
+                label: "Backoffice Api",
               },
             ],
           },
