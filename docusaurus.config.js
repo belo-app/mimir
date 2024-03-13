@@ -134,7 +134,7 @@ const config = {
             route: "/_v3/",
           },
           {
-            spec: "https://frigg.stg.belo.app/v1/docs/json",
+            spec: "https://frigg.stg.belo.link/v1/docs/json",
             route: "/crypto/",
           },
           {
