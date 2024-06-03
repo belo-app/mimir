@@ -210,6 +210,10 @@ const config = {
                 href: "/backoffice/api",
                 label: "Backoffice Api",
               },
+              {
+                href: "/backoffice/public",
+                label: "Backoffice Public",
+              },
             ],
           },
 
