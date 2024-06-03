@@ -145,6 +145,10 @@ const config = {
             spec: "https://balder.stg.belo.app/dashboard/docs/json",
             route: "/backoffice/dashboard",
           },
+          {
+            spec: "https://balder.stg.belo.app/public/docs/json",
+            route: "/backoffice/public",
+          },
         ],
 
         theme: redocConfig,
