@@ -146,7 +146,7 @@ const config = {
             route: "/backoffice/dashboard",
           },
           {
-            spec: "https://balder.stg.belo.app/public/docs/json",
+            spec: "https://baldr.stg.belo.app/public/docs/json",
             route: "/backoffice/public",
           },
         ],
