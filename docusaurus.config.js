@@ -138,11 +138,11 @@ const config = {
             route: "/crypto/",
           },
           {
-            spec: "https://balder.stg.belo.app/api/docs/json",
+            spec: "https://baldr.stg.belo.app/api/docs/json",
             route: "/backoffice/api",
           },
           {
-            spec: "https://balder.stg.belo.app/dashboard/docs/json",
+            spec: "https://baldr.stg.belo.app/dashboard/docs/json",
             route: "/backoffice/dashboard",
           },
         ],
