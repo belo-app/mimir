@@ -1,0 +1,94 @@
+name: Workflow Status Monitor
+
+on:
+  workflow_run:
+    workflows: ['*']
+    types: [completed]
+    branches: [main, staging, development]
+
+jobs:
+  notify-slack:
+    runs-on: ubuntu-latest
+
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    
+    if: |
+      github.event.workflow_run.conclusion == 'failure' && 
+      !contains(github.event.workflow_run.name, 'Monitor')
+
+    permissions: 
+      actions: read
+      contents: read
+    
+    steps:
+      - name: Get workflow duration
+        id: duration
+        run: |
+          start_time="${{ github.event.workflow_run.created_at }}"
+          end_time="${{ github.event.workflow_run.updated_at }}"
+          duration=$(( $(date -d "$end_time" +%s) - $(date -d "$start_time" +%s) ))
+          echo "duration=$(date -u -d @$duration +'%M minutes %S seconds')" >> $GITHUB_OUTPUT
+
+      - name: Send Slack notification
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": "🔴 Workflow Failed",
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "🔴 Workflow Failed"
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Repository:*\n${{ github.repository }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Workflow:*\n${{ github.event.workflow_run.name }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Branch:*\n${{ github.event.workflow_run.head_branch }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Duration:*\n${{ steps.duration.outputs.duration }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "<${{ github.event.workflow_run.html_url }}|View Failed Workflow Run :arrow_right:>"
+                  }
+                },
+                {
+                  "type": "context",
+                  "elements": [
+                    {
+                      "type": "mrkdwn",
+                      "text": ":rotating_light: Requiere atención inmediata"
+                    }
+                  ]
+                }
+              ],
+              "attachments": [
+                {
+                  "color": "#DC3545"
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK 
