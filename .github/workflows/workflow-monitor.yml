@@ -78,7 +78,7 @@ jobs:
                   "elements": [
                     {
                       "type": "mrkdwn",
-                      "text": ":rotating_light: Requiere atención inmediata"
+                      "text": ":rotating_light\n<!subteam^S086U6TTTBL> <!subteam^U070PT3G1GB> <!subteam^U0878D971RN> <!subteam^U06RR95LLR3>"
                     }
                   ]
                 }
@@ -91,4 +91,4 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.TECH_ALERTS_SLACK_WEBHOOK_URL }}
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK 
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
