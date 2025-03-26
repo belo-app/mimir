@@ -1,0 +1,3 @@
+bucket         = "belo-terraform-states-svc-us-east-2"
+dynamodb_table = "belo-terraform-locks-svc"
+key            = "tech-docs/terraform.tfstate"

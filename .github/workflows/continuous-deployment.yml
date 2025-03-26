@@ -1,0 +1,180 @@
+name: Build and deploy
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+  push:
+    paths:
+      # Detect changes in the docker and packages directories. BUILD + TF APPLY
+      - "docker/**"
+      - "src/**"
+      - ".github/workflows/continuous-deployment.yml"
+      # Detect changes in the terraform infra directory. TF APPLY (only infra)
+      - terraform/**
+      # Exclude files from triggering the workflow
+      - "!terraform/Makefile"
+      - "!terraform/README.md"
+
+    branches:
+      - main
+env:
+  APP_NAME: "tech-docs"
+
+jobs:
+  check-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      build_image: ${{ steps.check-changes.outputs.build_image }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Check for changes in docker/ and packages/ directories
+        id: check-changes
+        run: |
+          echo "build_image=$(git diff \
+          --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '^(docker/|packages/|.github/workflows/continuous-deployment.yml)' | &> /dev/null \
+          && echo 'true' ||  echo 'false')" >> $GITHUB_OUTPUT
+
+  build:
+    runs-on: ubuntu-latest
+    needs: check-changes
+    outputs:
+      DOCKER_IMAGE: ${{ steps.build-image.outputs.docker-image }}
+      DOCKER_IMAGE_TAG: ${{ steps.build-image.outputs.docker-image-tag }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.APP_USER_SSH_KEY }}
+
+      - name: Setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build
+        run: yarn build
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          install: true
+          driver: docker
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.BUILDER_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.BUILDER_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+          mask-aws-account-id: "no"
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Set tag env var
+        id: set-image-tag-env
+        run: |
+          echo "TAG=$(echo ${{ github.sha }} | cut -c1-12)" >> $GITHUB_ENV
+
+      - name: Build image
+        id: build-image
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          docker build --build-arg GIT_SHA=$TAG -t $REGISTRY/$APP_NAME:$TAG -t $REGISTRY/$APP_NAME:latest$LATEST_SUFIX -f docker/Dockerfile --push .
+
+          echo "docker-image=$REGISTRY/$APP_NAME:$TAG" >> $GITHUB_OUTPUT
+          echo "docker-image-tag=$TAG" >> $GITHUB_OUTPUT
+
+  terraform:
+    name: "tf apply"
+    runs-on: ubuntu-latest
+    needs: build
+    if: always() && needs.build.result != 'failure'
+    environment: svc
+    env:
+      TERRAFORM_ENVIRONMENT: svc
+      DOCKER_IMAGE_TAG: ${{ needs.build.outputs.DOCKER_IMAGE_TAG }}
+      AWS_ACCOUNT_ID: "216119504183"
+
+    defaults:
+      run:
+        shell: bash
+        # We keep Terraform files in the terraform directory.
+        working-directory: ./terraform
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials to get latest docker tag if DOCKER_IMAGE_TAG is not defined
+        uses: aws-actions/configure-aws-credentials@v4
+        if: env.DOCKER_IMAGE_TAG == ''
+        with:
+          aws-access-key-id: ${{ secrets.BUILDER_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.BUILDER_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/github_deploy_role
+          role-duration-seconds: 900
+          role-session-name: GetLatestDockerTagSession
+
+      - name: Get the latest tag from ecs if DOCKER_IMAGE_TAG is not defined
+        id: get-docker-tag
+        if: env.DOCKER_IMAGE_TAG == ''
+        run: |
+          echo "TAG undefined. Getting latest commit sha tag from ECS."
+
+          DOCKER_IMAGE_TAG=$(aws ecs describe-task-definition --task-definition $APP_NAME-task-def \
+          --query 'taskDefinition.containerDefinitions[0].image' \
+          --output text | cut -d':' -f2)
+
+          echo "TAG founded: $DOCKER_IMAGE_TAG"
+          echo "DOCKER_IMAGE_TAG=${DOCKER_IMAGE_TAG}" >> $GITHUB_ENV
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Configure AWS credentials for terraform
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+
+      - name: Terraform init
+        id: init
+        run: terraform init -backend-config="config/${TERRAFORM_ENVIRONMENT}.s3.tfbackend" -reconfigure
+
+      - name: Terraform format
+        id: fmt
+        run: terraform fmt -check
+
+      - name: Terraform validate
+        id: validate
+        run: terraform validate
+
+      - name: Terraform plan
+        id: plan
+        run: |
+          echo "Running terraform plan" 
+          terraform plan -no-color -input=false -var-file="config/${TERRAFORM_ENVIRONMENT}.tfvars" -var "docker_image_tag=${DOCKER_IMAGE_TAG}"
+
+      - name: Terraform Apply
+        run: |
+          echo "Running terraform Apply" 
+          terraform apply -input=false -auto-approve -var-file="config/${TERRAFORM_ENVIRONMENT}.tfvars" -var "docker_image_tag=${DOCKER_IMAGE_TAG}"
