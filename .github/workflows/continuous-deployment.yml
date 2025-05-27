@@ -89,7 +89,7 @@ jobs:
       - name: Set tag env var
         id: set-image-tag-env
         run: |
-          echo "TAG=$(echo ${{ github.sha }} | cut -c1-12)" >> $GITHUB_ENV
+          echo "TAG=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
 
       - name: Build image
         id: build-image
