@@ -5,7 +5,8 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "dev": "docusaurus start -p 9000",
-    "build": "docusaurus build",
+    "fetch-specs": "bash scripts/fetch-openapi-specs.sh",
+    "build": "yarn fetch-specs && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
