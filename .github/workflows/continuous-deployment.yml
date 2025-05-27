@@ -39,8 +39,12 @@ jobs:
           --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '^(docker/|packages/|.github/workflows/continuous-deployment.yml)' | &> /dev/null \
           && echo 'true' ||  echo 'false')" >> $GITHUB_OUTPUT
 
+
+    
+
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     needs: check-changes
     outputs:
       DOCKER_IMAGE: ${{ steps.build-image.outputs.docker-image }}
