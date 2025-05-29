@@ -116,37 +116,35 @@ const config = {
       {
         specs: [
           {
-            spec: isProduction
-              ? "https://api.stg.belo.app/v1/docs/json"
-              : "http://localhost:3000/v1/docs/json",
+            spec: "static/openapi/v1.json",
             route: "/v1/",
           },
           {
-            spec: "https://api.stg.belo.app/v2/docs/json",
+            spec: "static/openapi/v2.json",
             route: "/v2/",
           },
           {
-            spec: "https://api.stg.belo.app/payment/docs/json",
+            spec: "static/openapi/payment.json",
             route: "/payment/",
           },
           {
-            spec: "https://api.stg.belo.app/v1/docs/json",
+            spec: "static/openapi/_v3.json",
             route: "/_v3/",
           },
           {
-            spec: "https://frigg.stg.belo.link/v1/docs/json",
+            spec: "static/openapi/crypto.json",
             route: "/crypto/",
           },
           {
-            spec: "https://api.stg.baldr.app/api/docs/json",
+            spec: "static/openapi/backoffice/api.json",
             route: "/backoffice/api",
           },
           {
-            spec: "https://api.stg.baldr.app/dashboard/docs/json",
+            spec: "static/openapi/backoffice/dashboard.json",
             route: "/backoffice/dashboard",
           },
           {
-            spec: "https://api.stg.baldr.app/public/docs/json",
+            spec: "static/openapi/backoffice/public.json",
             route: "/backoffice/public",
           },
         ],
