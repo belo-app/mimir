@@ -134,10 +134,6 @@ const config = {
             route: "/_v3/",
           },
           {
-            spec: "https://frigg.stg.belo.link/v1/docs/json",
-            route: "/crypto/",
-          },
-          {
             spec: "https://api.stg.baldr.app/api/docs/json",
             route: "/backoffice/api",
           },
@@ -197,10 +193,6 @@ const config = {
               {
                 href: "/v3",
                 label: "V3",
-              },
-              {
-                href: "/crypto",
-                label: "Crypto",
               },
               {
                 href: "/backoffice/dashboard",
