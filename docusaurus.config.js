@@ -143,6 +143,10 @@ const config = {
             spec: "static/openapi/backoffice/public.json",
             route: "/backoffice/public",
           },
+          {
+            spec: "https://blockchain-bridge.stg.belo.link/api-json",
+            route: "/crypto/",
+          },
         ],
 
         theme: redocConfig,
@@ -191,6 +195,10 @@ const config = {
               {
                 href: "/v3",
                 label: "V3",
+              },
+              {
+                href: "/crypto",
+                label: "Crypto",
               },
               {
                 href: "/backoffice/dashboard",
